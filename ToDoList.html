@@ -10,13 +10,13 @@
 <body>
     <div id="myDIV" class="header">
         <h1>Lista de Afazeres</h1><br>
-        <input type="text" id="myInput" placeholder="O que você precisa fazer...">
-        <span onclick="newElement()" class="addBtn">Adicionar botão</span>
+        <input type="text" id="tarefa" placeholder="O que você precisa fazer...">
+        <span onclick="newElement()" class="adicionar">Adicionar Tarefa</span>
       </div>
     
-      <ul id="myUL">
+      <ul id="listatarefas">
         <li>Arrumar o quarto</li>
-        <li class="checked">Vestido de Formatura</li>
+        <li class="tlistada">Vestido de Formatura</li>
         <li>Comprar salto</li>
         <li>Estudar para Matemática</li>
       </ul>
@@ -24,20 +24,20 @@
 <script>
 
     // BOTÃO DE FECHAR 
-    var myNodelist = document.getElementsByTagName("LI");
+    var Nodelist = document.getElementsByTagName("LI");
     var i;
-    for (i = 0; i < myNodelist.length; i++) {
+    for (i = 0; i < Nodelist.length; i++) {
     var span = document.createElement("SPAN");
     var txt = document.createTextNode("\u00D7");
-    span.className = "close";
+    span.className = "bfechar";
     span.appendChild(txt);
-    myNodelist[i].appendChild(span);
+    Nodelist[i].appendChild(span);
     }
 
-    var close = document.getElementsByClassName("close");
+    var bfechar = document.getElementsByClassName("bfechar");
     var i;
-    for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
+    for (i = 0; i < bfechar.length; i++) {
+    bfechar[i].onclick = function() {
         var div = this.parentElement;
         div.style.display = "none";
     }
@@ -47,31 +47,31 @@
     var list = document.querySelector('ul');
     list.addEventListener('click', function(ev) {
     if (ev.target.tagName === 'LI') {
-        ev.target.classList.toggle('checked');
+        ev.target.classList.toggle('tlistada');
     }
     }, false);
 
     // ADICIONAR TAREFA
     function newElement() {
     var li = document.createElement("li");
-    var inputValue = document.getElementById("myInput").value;
-    var t = document.createTextNode(inputValue);
+    var tarefa = document.getElementById("tarefa").value;
+    var t = document.createTextNode(tarefa);
     li.appendChild(t);
-    if (inputValue === '') {
-        alert("You must write something!");
+    if (tarefa === '') {
+        alert("Ops.. Parece que você não adicionou nenhuma tarefa");
     } else {
-        document.getElementById("myUL").appendChild(li);
+        document.getElementById("listatarefas").appendChild(li);
     }
-    document.getElementById("myInput").value = "";
+    document.getElementById("tarefa").value = "";
 
     var span = document.createElement("SPAN");
     var txt = document.createTextNode("\u00D7");
-    span.className = "close";
+    span.className = "bfechar";
     span.appendChild(txt);
     li.appendChild(span);
 
-    for (i = 0; i < close.length; i++) {
-        close[i].onclick = function() {
+    for (i = 0; i < bfechar.length; i++) {
+        bfechar[i].onclick = function() {
         var div = this.parentElement;
         div.style.display = "none";
         }
